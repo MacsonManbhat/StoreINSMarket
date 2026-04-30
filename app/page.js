@@ -81,7 +81,7 @@ Phone: ${customerPhone}
 Pickup Time: ${pickupTime}
 
 Items:
-${cart.map(item => ${item.name} ${item.size} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)} ${item.deposit ? `+ $${(DEPOSIT * item.quantity).toFixed(2)} dep : ''}`).join('\n')}
+${cart.map(item => `${item.name} ${item.size} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}${item.deposit ? ` + $${(DEPOSIT * item.quantity).toFixed(2)} dep` : ''}`).join('\n')}
 
 Subtotal: $${totals.subtotal}
 Deposit: $${totals.deposit}
@@ -90,7 +90,7 @@ TOTAL: $${totals.total}
 Pay in-store at pickup
     `
     
-    window.location.href = mailto:${storeInfo.email}?subject=New Pickup Order - ${customerName}&body=${encodeURIComponent(orderDetails)}
+    window.location.href = `mailto:${storeInfo.email}?subject=New Pickup Order - ${customerName}&body=${encodeURIComponent(orderDetails)}`
     
     setOrderPlaced(true)
     setCart([])
@@ -138,6 +138,7 @@ Pay in-store at pickup
                     <div className="text-lg font-bold">${product.price.toFixed(2)} 
                       {product.deposit && <span className="text-xs text-gray-500"> + ${DEPOSIT.toFixed(2)} dep</span>}
                     </div>
+                  </div>
                   <button 
                     onClick={() => addToCart(product)}
                     disabled={!isOpen}
@@ -161,7 +162,7 @@ Pay in-store at pickup
                 <div key={item.id} className="flex justify-between items-center mb-3 pb-3 border-b">
                   <div className="flex-1">
                     <div className="font-medium text-sm">{item.name}</div>
-                    <div className="text-xs text-gray-600">${item.price.toFixed(2)} {item.deposit && + $${DEPOSIT.toFixed(2)} dep}</div>
+                    <div className="text-xs text-gray-600">${item.price.toFixed(2)} {item.deposit && `+ $${DEPOSIT.toFixed(2)} dep`}</div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 bg-gray-200 rounded">-</button>
