@@ -10,10 +10,9 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(true)
   const [orderPlaced, setOrderPlaced] = useState(false)
 
-  // Check if store is open
   useEffect(() => {
     const now = new Date()
-    const day = now.getDay() // 0 = Sun, 6 = Sat
+    const day = now.getDay()
     const hour = now.getHours()
     const minute = now.getMinutes()
     const currentTime = hour + minute/60
@@ -82,7 +81,7 @@ Phone: ${customerPhone}
 Pickup Time: ${pickupTime}
 
 Items:
-${cart.map(item => `${item.name} ${item.size} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)} ${item.deposit ? `+ $${(DEPOSIT * item.quantity).toFixed(2)} dep` : ''}`).join('\n')}
+${cart.map(item => ${item.name} ${item.size} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)} ${item.deposit ? `+ $${(DEPOSIT * item.quantity).toFixed(2)} dep : ''}`).join('\n')}
 
 Subtotal: $${totals.subtotal}
 Deposit: $${totals.deposit}
@@ -91,8 +90,7 @@ TOTAL: $${totals.total}
 Pay in-store at pickup
     `
     
-    // This opens email app with order details
-    window.location.href = `mailto:${storeInfo.email}?subject=New Pickup Order - ${customerName}&body=${encodeURIComponent(orderDetails)}`
+    window.location.href = mailto:${storeInfo.email}?subject=New Pickup Order - ${customerName}&body=${encodeURIComponent(orderDetails)}
     
     setOrderPlaced(true)
     setCart([])
@@ -105,11 +103,11 @@ Pay in-store at pickup
 
   if (orderPlaced) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
           <h1 className="text-2xl font-bold mb-4">Order Sent! 🎉</h1>
           <p className="mb-4">We’ve got your order. Pay at the counter when you pick up.</p>
-          <p className="text-sm text-gray-600 mb-6">Check your email app - it should have opened with your order details.</p>
+          <p className="text-sm text-gray-600 mb-6">Your email app should have opened with the order details.</p>
           <button onClick={() => setOrderPlaced(false)} className="bg-blue-600 text-white px-6 py-2 rounded">
             Place Another Order
           </button>
@@ -119,7 +117,7 @@ Pay in-store at pickup
   }
 
   return (
-    <div className="min-h-screen p-4 max-w-6xl mx-auto">
+    <div className="min-h-screen p-4 max-w-6xl mx-auto bg-gray-50">
       <header className="text-center mb-6 bg-white p-6 rounded-lg shadow">
         <h1 className="text-3xl font-bold">{storeInfo.name}</h1>
         <p className="text-gray-600">{storeInfo.location}</p>
@@ -132,20 +130,22 @@ Pay in-store at pickup
           <h2 className="text-xl font-bold mb-4">Beverages</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {products.map(product => (
-              <div key={product.id} className="bg-white p-4 rounded-lg shadow flex justify-between items-center">
-                <div>
-                  <div className="font-medium">{product.name}</div>
-                  <div className="text-sm text-gray-600">{product.size}</div>
-                  <div className="text-lg font-bold">${product.price.toFixed(2)} 
-                    {product.deposit && <span className="text-xs text-gray-500"> + ${DEPOSIT.toFixed(2)} dep</span>}
-                  </div>
-                <button 
-                  onClick={() => addToCart(product)}
-                  disabled={!isOpen}
-                  className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-300"
-                >
-                  Add
-                </button>
+              <div key={product.id} className="bg-white p-4 rounded-lg shadow">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-medium">{product.name}</div>
+                    <div className="text-sm text-gray-600">{product.size}</div>
+                    <div className="text-lg font-bold">${product.price.toFixed(2)} 
+                      {product.deposit && <span className="text-xs text-gray-500"> + ${DEPOSIT.toFixed(2)} dep</span>}
+                    </div>
+                  <button 
+                    onClick={() => addToCart(product)}
+                    disabled={!isOpen}
+                    className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-300"
+                  >
+                    Add
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ Pay in-store at pickup
                 <div key={item.id} className="flex justify-between items-center mb-3 pb-3 border-b">
                   <div className="flex-1">
                     <div className="font-medium text-sm">{item.name}</div>
-                    <div className="text-xs text-gray-600">${item.price.toFixed(2)} {item.deposit && `+ $${DEPOSIT.toFixed(2)} dep`}</div>
+                    <div className="text-xs text-gray-600">${item.price.toFixed(2)} {item.deposit && + $${DEPOSIT.toFixed(2)} dep}</div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 bg-gray-200 rounded">-</button>
