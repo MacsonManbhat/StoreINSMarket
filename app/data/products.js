@@ -15,9 +15,9 @@ export const products = [
   { id: 14, name: "Minute Maid Apple Juice", size: "355ml", price: 3.99, deposit: true },
   { id: 15, name: "Monster Energy", size: "473ml", price: 4.89, deposit: true },
   { id: 16, name: "Monster Energy Drink Ultra Paradise", size: "473ml", price: 4.89, deposit: true },
-  { id: 17, name: "Monster Java Mean Bean", size: "", price: 4.89, deposit: true },
+  { id: 17, name: "Monster Java Mean Bean", size: "473ml", price: 4.89, deposit: true },
   { id: 18, name: "Monster Pacific Punch", size: "473ml", price: 4.89, deposit: true },
-  { id: 19, name: "Monster Punch Mango Loco", size: "", price: 4.89, deposit: true },
+  { id: 19, name: "Monster Punch Mango Loco", size: "473ml", price: 4.89, deposit: true },
   { id: 20, name: "Monster Ultra Peachy Keen", size: "473ml", price: 4.89, deposit: true },
   { id: 21, name: "Monster Zero Sugar", size: "473ml", price: 4.89, deposit: true },
   { id: 22, name: "Monster Zero Ultra", size: "473ml", price: 4.89, deposit: true },
@@ -61,5 +61,6 @@ export const storeInfo = {
     weekday: { open: 7, close: 21, label: "Mon-Fri 7am-9pm" },
     weekend: { open: 11, close: 17, label: "Weekends & Holidays 11am-5pm" }
   },
-  phone: "587-435-2711", 
-  email: "insmarket8263@gmail.com" 
+  phone: "587-435-2711",
+  email: "insmarket8263@gmail.com"
+};
