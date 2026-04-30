@@ -1,3 +1,5 @@
+import './globals.css'
+
 export const metadata = {
   title: 'INS MARKET - Bridgeland Station',
   description: 'Order ahead for pickup at INS MARKET Bridgeland Memorial C-Train',
